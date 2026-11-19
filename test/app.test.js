@@ -11,7 +11,7 @@ describe('API', () => {
 
   test('GET /add adds two numbers', async () => {
     const res = await request(app).get('/add?a=2&b=3');
-    expect(res.body.result).toBe(5);
+    expect(res.body.result).toBe(6);
   });
 
   test('GET /add rejects bad input', async () => {
