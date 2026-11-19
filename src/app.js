@@ -19,4 +19,14 @@ app.get('/add', (req, res) => {
   res.json({ result: a + b });
 });
 
+
+const client = require('prom-client');
+
+client.collectDefaultMetrics();
+
+app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', client.register.contentType);
+  res.end(await client.register.metrics());
+});
+
 module.exports = app;
