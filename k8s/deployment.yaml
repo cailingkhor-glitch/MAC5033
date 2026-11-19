@@ -1,0 +1,39 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mac5033
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mac5033
+  template:
+    metadata:
+      labels:
+        app: mac5033
+    spec:
+      containers:
+        - name: app
+          image: IMAGE_PLACEHOLDER
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 2
+            periodSeconds: 3
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mac5033
+spec:
+  selector:
+    app: mac5033
+  ports:
+    - port: 80
+      targetPort: 3000
