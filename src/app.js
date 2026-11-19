@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Hello from MAC5033', version: process.env.APP_VERSION || 'dev' });
+  res.json({ message: 'Hello from MAC5033 v2', version: process.env.APP_VERSION || 'dev' });
 });
 
 app.get('/health', (req, res) => {
